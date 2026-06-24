@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Web Security Tester</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+
+            Web<span>Security</span>Tester
+
+        </div>
+
+        <nav>
+
+            <a href="#">Dashboard</a>
+            <a href="#">Scanner</a>
+            <a href="#">History</a>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+            <h1>Website Security Scanner</h1>
+
+            <p>
+                Analyze websites and evaluate their security configuration in a few seconds.
+            </p>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <input
+                    type="url"
+                    name="website_url"
+                    placeholder="https://example.com"
+                    required
+                >
+
+                <button type="submit">
+
+                    Scan Website
+
+                </button>
+
+            </form>
+
+        </section>
+                <section class="dashboard">
+
+            <div class="card">
+
+                <h2>{{ total_scans }}</h2>
+
+                <p>Total Scans</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>{{ average_score }}%</h2>
+
+                <p>Average Score</p>
+
+            </div>
+
+            <div class="card">
+
+                {% if last_scan %}
+                    <h2>{{ last_scan.score }}/100</h2>
+                {% else %}
+                    <h2>--</h2>
+                {% endif %}
+
+                <p>Latest Score</p>
+
+            </div>
+
+            <div class="card">
+
+                {% if last_scan %}
+                    <h2>{{ last_scan.technology }}</h2>
+                {% else %}
+                    <h2>--</h2>
+                {% endif %}
+
+                <p>Technology</p>
+
+            </div>
+
+        </section>
+
+
+        {% if result %}
+
+        <section class="result">
+
+            <div class="result-header">
+
+                <h2>Analysis Report</h2>
+
+                <div class="score-circle">
+
+                    {{ result.score }}/100
+
+                </div>
+
+            </div>
+
+            <table>
+
+                <tr>
+                    <td>Website</td>
+                    <td>{{ result.url }}</td>
+                </tr>
+
+                <tr>
+                    <td>Status Code</td>
+                    <td>{{ result.status_code }}</td>
+                </tr>
+
+                <tr>
+                    <td>HTTPS</td>
+                    <td>{{ result.https }}</td>
+                </tr>
+
+                <tr>
+                    <td>SSL Certificate</td>
+                    <td>{{ result.ssl }}</td>
+                </tr>
+
+                <tr>
+                    <td>Technology</td>
+                    <td>{{ result.technology }}</td>
+                </tr>
+
+                <tr>
+                    <td>Response Time</td>
+                    <td>{{ result.response_time }} s</td>
+                </tr>
+
+                <tr>
+                    <td>Robots.txt</td>
+                    <td>{{ result.robots }}</td>
+                </tr>
+
+                <tr>
+                    <td>Sitemap.xml</td>
+                    <td>{{ result.sitemap }}</td>
+                </tr>
+
+                <tr>
+                    <td>X-Frame-Options</td>
+                    <td>{{ result.x_frame_options }}</td>
+                </tr>
+
+                <tr>
+                    <td>Content-Security-Policy</td>
+                    <td>{{ result.csp }}</td>
+                </tr>
+
+                <tr>
+                    <td>Strict-Transport-Security</td>
+                    <td>{{ result.hsts }}</td>
+                </tr>
+
+                <tr>
+                    <td>Cookies</td>
+                    <td>{{ result.cookies }}</td>
+                </tr>
+
+                <tr>
+                    <td>Content-Type</td>
+                    <td>{{ result.content_type }}</td>
+                </tr>
+
+            </table>
+
+        </section>
+
+        {% endif %}
+        <section class="history">
+
+    <h2>Recent Scans</h2>
+
+    {% if history %}
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>URL</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for scan in history %}
+
+            <tr>
+
+                <td>{{ scan.url }}</td>
+
+                <td>{{ scan.score }}/100</td>
+
+                <td>{{ scan.status_code }}</td>
+
+                <td>{{ scan.created_at|date:"d/m/Y H:i" }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+        <p class="empty-history">
+            No scans available.
+        </p>
+
+    {% endif %}
+
+</section>
+
+</main>
+
+<footer>
+
+    <p>
+        Web Security Tester © 2026 | Developed with Django
+    </p>
+
+</footer>
+
+</body>
+
+</html>
