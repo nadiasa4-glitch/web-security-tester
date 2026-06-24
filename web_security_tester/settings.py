@@ -6,7 +6,8 @@ SECRET_KEY = 'django-insecure-zssfrkwfu559knxfj_(i(2d=(c58l**9vlkksi5g0q(+pzzpdy
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
 
 INSTALLED_APPS = [
     'scanner',
@@ -18,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -28,7 +30,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'web_security_tester.urls'
+
 
 TEMPLATES = [
     {
@@ -45,7 +49,9 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'web_security_tester.wsgi.application'
+
 
 DATABASES = {
     'default': {
@@ -53,6 +59,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -69,6 +76,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -77,10 +85,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
