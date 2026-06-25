@@ -113,93 +113,106 @@
 
         {% if result %}
 
-        <section class="result">
+<section class="result">
 
-            <div class="result-header">
+    <div class="result-header">
 
-                <h2>Analysis Report</h2>
+        <h2>Analysis Report</h2>
 
-                <div class="score-circle">
+        <div class="score-circle">
 
-                    {{ result.score }}/100
+            {{ result.score }}/100
 
-                </div>
+        </div>
 
-            </div>
+    </div>
 
-            <table>
+    <table>
 
-                <tr>
-                    <td>Website</td>
-                    <td>{{ result.url }}</td>
-                </tr>
+        <tr>
+            <td>Website</td>
+            <td>{{ result.url }}</td>
+        </tr>
 
-                <tr>
-                    <td>Status Code</td>
-                    <td>{{ result.status_code }}</td>
-                </tr>
+        <tr>
+            <td>Status Code</td>
+            <td>{{ result.status_code }}</td>
+        </tr>
 
-                <tr>
-                    <td>HTTPS</td>
-                    <td>{{ result.https }}</td>
-                </tr>
+        <tr>
+            <td>HTTPS</td>
+            <td>{{ result.https }}</td>
+        </tr>
 
-                <tr>
-                    <td>SSL Certificate</td>
-                    <td>{{ result.ssl }}</td>
-                </tr>
+        <tr>
+            <td>SSL Certificate</td>
+            <td>{{ result.ssl }}</td>
+        </tr>
 
-                <tr>
-                    <td>Technology</td>
-                    <td>{{ result.technology }}</td>
-                </tr>
+        <tr>
+            <td>Technology</td>
+            <td>{{ result.technology }}</td>
+        </tr>
 
-                <tr>
-                    <td>Response Time</td>
-                    <td>{{ result.response_time }} s</td>
-                </tr>
+        <tr>
+            <td>Response Time</td>
+            <td>{{ result.response_time }} s</td>
+        </tr>
 
-                <tr>
-                    <td>Robots.txt</td>
-                    <td>{{ result.robots }}</td>
-                </tr>
+        <tr>
+            <td>Robots.txt</td>
+            <td>{{ result.robots }}</td>
+        </tr>
 
-                <tr>
-                    <td>Sitemap.xml</td>
-                    <td>{{ result.sitemap }}</td>
-                </tr>
+        <tr>
+            <td>Sitemap.xml</td>
+            <td>{{ result.sitemap }}</td>
+        </tr>
 
-                <tr>
-                    <td>X-Frame-Options</td>
-                    <td>{{ result.x_frame_options }}</td>
-                </tr>
+        <tr>
+            <td>X-Frame-Options</td>
+            <td>{{ result.x_frame_options }}</td>
+        </tr>
 
-                <tr>
-                    <td>Content-Security-Policy</td>
-                    <td>{{ result.csp }}</td>
-                </tr>
+        <tr>
+            <td>Content-Security-Policy</td>
+            <td>{{ result.csp }}</td>
+        </tr>
 
-                <tr>
-                    <td>Strict-Transport-Security</td>
-                    <td>{{ result.hsts }}</td>
-                </tr>
+        <tr>
+            <td>Strict-Transport-Security</td>
+            <td>{{ result.hsts }}</td>
+        </tr>
 
-                <tr>
-                    <td>Cookies</td>
-                    <td>{{ result.cookies }}</td>
-                </tr>
+        <tr>
+            <td>Cookies</td>
+            <td>{{ result.cookies }}</td>
+        </tr>
 
-                <tr>
-                    <td>Content-Type</td>
-                    <td>{{ result.content_type }}</td>
-                </tr>
+        <tr>
+            <td>Content-Type</td>
+            <td>{{ result.content_type }}</td>
+        </tr>
 
-            </table>
+    </table>
 
-        </section>
+    <div style="text-align:center; margin-top:25px;">
 
-        {% endif %}
-        <section class="history">
+        <a href="{% url 'download_pdf' %}">
+
+            <button type="button">
+
+                 Download PDF Report 📄
+
+            </button>
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endif %}
 
     <h2>Recent Scans</h2>
 
@@ -255,7 +268,7 @@
 <footer>
 
     <p>
-        Web Security Tester © 2026 | Developed with Django
+        Web Security Tester  | © 2026
     </p>
 
 </footer>

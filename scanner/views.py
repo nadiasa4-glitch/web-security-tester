@@ -4,7 +4,8 @@ import socket
 from .models import Scan
 from .models import Scan
 from django.db.models import Avg
-
+from django.http import HttpResponse
+from .pdf_generator import generate_pdf
 def home(request):
 
     result = None
@@ -215,3 +216,5 @@ def home(request):
             "history": history,
         }
     )
+def download_pdf(request):
+    return generate_pdf(request)

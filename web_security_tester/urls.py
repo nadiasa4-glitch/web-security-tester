@@ -19,5 +19,6 @@ from django.urls import path
 from scanner import views
 urlpatterns = [
     path('', views.home),
+    path('download-pdf/', views.download_pdf, name='download_pdf'),
     path('admin/', admin.site.urls),
 ]
