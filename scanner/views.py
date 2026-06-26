@@ -21,14 +21,17 @@ def home(request):
             print("HTTPS_PROXY =", os.environ.get("HTTPS_PROXY"))
             print("http_proxy =", os.environ.get("http_proxy"))
             print("https_proxy =", os.environ.get("https_proxy"))
-            response = requests.get(
-                url,
-                timeout=10,
-                allow_redirects=True,
-                headers={
-                    "User-Agent": "Mozilla/5.0"
-                }
-            )
+            session = requests.Session()
+            session.trust_env = False
+
+            response = session.get(
+    url,
+    timeout=10,
+    allow_redirects=True,
+    headers={
+        "User-Agent": "Mozilla/5.0"
+    }
+)
 
             response_time = round(
                 response.elapsed.total_seconds(),
@@ -47,13 +50,13 @@ def home(request):
 
             ssl = "Valide" if https == "Oui" else "Non"
 
-            robots = requests.get(
-                url.rstrip("/") + "/robots.txt",
-                timeout=5,
-                headers={
-                    "User-Agent": "Mozilla/5.0"
-                }
-            )
+            robots = session.get(
+           url.rstrip("/") + "/robots.txt",
+           timeout=5,
+           headers={
+           "User-Agent": "Mozilla/5.0"
+    }
+)
 
             robots_result = (
                 "Trouvé"
@@ -61,13 +64,13 @@ def home(request):
                 else "Introuvable"
             )
 
-            sitemap = requests.get(
-                url.rstrip("/") + "/sitemap.xml",
-                timeout=5,
-                headers={
-                    "User-Agent": "Mozilla/5.0"
-                }
-            )
+            sitemap = session.get(
+    url.rstrip("/") + "/sitemap.xml",
+    timeout=5,
+    headers={
+        "User-Agent": "Mozilla/5.0"
+    }
+)
 
             sitemap_result = (
                 "Trouvé"
