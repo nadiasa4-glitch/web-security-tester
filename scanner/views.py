@@ -15,11 +15,19 @@ def home(request):
         url = request.POST.get("website_url")
 
         try:
+            import os
 
+            print("HTTP_PROXY =", os.environ.get("HTTP_PROXY"))
+            print("HTTPS_PROXY =", os.environ.get("HTTPS_PROXY"))
+            print("http_proxy =", os.environ.get("http_proxy"))
+            print("https_proxy =", os.environ.get("https_proxy"))
             response = requests.get(
                 url,
                 timeout=10,
-                allow_redirects=True
+                allow_redirects=True,
+                headers={
+                    "User-Agent": "Mozilla/5.0"
+                }
             )
 
             response_time = round(
@@ -38,9 +46,13 @@ def home(request):
             redirect = "Oui" if response.history else "Non"
 
             ssl = "Valide" if https == "Oui" else "Non"
+
             robots = requests.get(
                 url.rstrip("/") + "/robots.txt",
-                timeout=5
+                timeout=5,
+                headers={
+                    "User-Agent": "Mozilla/5.0"
+                }
             )
 
             robots_result = (
@@ -51,7 +63,10 @@ def home(request):
 
             sitemap = requests.get(
                 url.rstrip("/") + "/sitemap.xml",
-                timeout=5
+                timeout=5,
+                headers={
+                    "User-Agent": "Mozilla/5.0"
+                }
             )
 
             sitemap_result = (
