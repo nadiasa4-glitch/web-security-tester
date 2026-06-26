@@ -26,19 +26,16 @@
 
         </div>
 
-        <nav>
-
-            <a href="#">Dashboard</a>
-            <a href="#">Scanner</a>
-            <a href="#">History</a>
-
-        </nav>
-
+       <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#scanner">Scanner</a>
+    <a href="#history">History</a>
+</nav>
     </header>
 
     <main>
 
-        <section class="hero">
+        <section id="scanner" class="hero">
 
             <h1>Website Security Scanner</h1>
 
@@ -66,7 +63,7 @@
             </form>
 
         </section>
-                <section class="dashboard">
+                <section id="dashboard" class="dashboard">
 
             <div class="card">
 
@@ -214,7 +211,9 @@
 
 {% endif %}
 
-    <h2>Recent Scans</h2>
+    <section id="history">
+
+<h2>Recent Scans</h2>
 
     {% if history %}
 
