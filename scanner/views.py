@@ -205,8 +205,28 @@ def home(request):
 
         except Exception as e:
 
-            print("ERROR:", e)
-            raise
+         total_scans = Scan.objects.count()
+
+    average_score = Scan.objects.aggregate(
+        Avg("score")
+    )["score__avg"] or 0
+
+    last_scan = Scan.objects.order_by("-created_at").first()
+
+    history = Scan.objects.order_by("-created_at")[:5]
+
+    return render(
+        request,
+        "index.html",
+        {
+            "result": None,
+            "error": str(e),
+            "total_scans": total_scans,
+            "average_score": round(average_score),
+            "last_scan": last_scan,
+            "history": history,
+        }
+    )
 
     total_scans = Scan.objects.count()
 

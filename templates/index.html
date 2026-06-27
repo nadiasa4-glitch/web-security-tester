@@ -107,7 +107,17 @@
 
         </section>
 
+    {% if error %}
 
+<div class="error-box">
+
+    <strong>Unable to scan this website.</strong><br>
+
+    {{ error }}
+
+</div>
+
+{% endif %}
         {% if result %}
 
 <section class="result">
