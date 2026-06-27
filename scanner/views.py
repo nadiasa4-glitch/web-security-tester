@@ -203,56 +203,56 @@ def home(request):
                 "content_length": content_length,
             }
 
-        except Exception as e:
+        except Exception as e:      # ← 8 spaces
 
-         total_scans = Scan.objects.count()
+            total_scans = Scan.objects.count()      # ← 12 spaces
 
-    average_score = Scan.objects.aggregate(
-        Avg("score")
-    )["score__avg"] or 0
+            average_score = Scan.objects.aggregate( # ← 12 spaces
+                Avg("score")                        # ← 16 spaces
+            )["score__avg"] or 0                   # ← 12 spaces
 
-    last_scan = Scan.objects.order_by("-created_at").first()
+            last_scan = Scan.objects.order_by("-created_at").first()   # ← 12 spaces
 
-    history = Scan.objects.order_by("-created_at")[:5]
+            history = Scan.objects.order_by("-created_at")[:5]         # ← 12 spaces
 
-    return render(
-        request,
-        "index.html",
-        {
-            "result": None,
-            "error": str(e),
-            "total_scans": total_scans,
-            "average_score": round(average_score),
-            "last_scan": last_scan,
-            "history": history,
-        }
-    )
+            return render(                      # ← 12 spaces
+                request,                        # ← 16 spaces
+                "index.html",                   # ← 16 spaces
+                {                               # ← 16 spaces
+                    "result": None,             # ← 20 spaces
+                    "error": str(e),            # ← 20 spaces
+                    "total_scans": total_scans, # ← 20 spaces
+                    "average_score": round(average_score), # ← 20 spaces
+                    "last_scan": last_scan,     # ← 20 spaces
+                    "history": history,         # ← 20 spaces
+                }                               # ← 16 spaces
+            )                                   # ← 12 spaces
 
-    total_scans = Scan.objects.count()
+    total_scans = Scan.objects.count()          # ← 4 spaces
 
-    average_score = Scan.objects.aggregate(
-        Avg("score")
-    )["score__avg"]
+    average_score = Scan.objects.aggregate(     # ← 4 spaces
+        Avg("score")                            # ← 8 spaces
+    )["score__avg"]                             # ← 4 spaces
 
-    if average_score is None:
-        average_score = 0
+    if average_score is None:                   # ← 4 spaces
+        average_score = 0                       # ← 8 spaces
 
-    average_score = round(average_score)
+    average_score = round(average_score)        # ← 4 spaces
 
-    last_scan = Scan.objects.order_by("-created_at").first()
+    last_scan = Scan.objects.order_by("-created_at").first()  # ← 4 spaces
 
-    history = Scan.objects.order_by("-created_at")[:5]
+    history = Scan.objects.order_by("-created_at")[:5]        # ← 4 spaces
 
-    return render(
-        request,
-        "index.html",
-        {
-            "result": result,
-            "total_scans": total_scans,
-            "average_score": average_score,
-            "last_scan": last_scan,
-            "history": history,
-        }
-    )
+    return render(                             # ← 4 spaces
+        request,                               # ← 8 spaces
+        "index.html",                          # ← 8 spaces
+        {                                      # ← 8 spaces
+            "result": result,                  # ← 12 spaces
+            "total_scans": total_scans,        # ← 12 spaces
+            "average_score": average_score,    # ← 12 spaces
+            "last_scan": last_scan,            # ← 12 spaces
+            "history": history,                # ← 12 spaces
+        }                                      # ← 8 spaces
+    )                                          # ← 4 spaces
 def download_pdf(request):
     return generate_pdf(request)
